@@ -1,0 +1,134 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="das.practica5.spolex.clientsManager.avisos.fragments.FormAvisoFragment"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+    android:weightSum="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cliente"
+            android:id="@+id/avisos_form_label_cliente" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/avisos_form_clientes_spin_id"
+            android:spinnerMode="dropdown"
+            android:transitionGroup="false" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/avisos_form_time_id"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:id="@+id/avisos_form_timepicker_id"
+            android:layout_weight="1"
+            android:background="#4585f2"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_aviso_fecha_hora_id">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/avisos_form_date_id"
+            android:layout_weight="0.5" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Fecha"
+            android:id="@+id/avisos_btn_datepicker_id"
+            android:layout_weight="0.5"
+            android:textColor="#ffffff"
+            android:background="#4585f2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/urgente"
+            android:id="@+id/avisos_form_urg_check_id"
+            android:checked="false"
+            android:layout_weight="0.5"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/realizada"
+            android:id="@+id/avisos_form_check_realizadas_id"
+            android:checked="false"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/informe"
+        android:id="@+id/avisos_form_label_informe_id" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/avisos_form_informe_id"
+        android:layout_weight="0.90" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_btn_map"
+            android:id="@+id/avisos_form_btn_mapa_id"
+            android:layout_weight="0.5"
+            android:background="#4585f2"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_aceptar"
+            android:id="@+id/avisos_form_btn_aceptar_id"
+            android:layout_weight="0.5"
+            android:background="#4585f2"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+
+</LinearLayout>

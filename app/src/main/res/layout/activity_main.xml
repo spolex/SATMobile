@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="das.practica5.spolex.clientsManager.main.MainActivity"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        style="@style/DrawerArrowStyle" />
+
+
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/main_clients_id"
+
+            android:src="@drawable/ic_action_clients"
+            android:layout_gravity="center|fill_vertical"
+            android:layout_weight="0.5" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/main_manage_id"
+
+            android:src="@drawable/manage"
+            android:layout_gravity="center"
+            android:layout_weight="0.5" />
+
+
+</LinearLayout>

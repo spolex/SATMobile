@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:orientation="vertical">
+<!--Se usará de cabecera para el navdrawer (p.e foto del cliente o del siniestro)-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:id="@+id/navdrawbackgrd"
+        android:src="@drawable/back_clientes"
+        android:scaleType="centerCrop"
+        android:background="#fff"/>
+</FrameLayout>

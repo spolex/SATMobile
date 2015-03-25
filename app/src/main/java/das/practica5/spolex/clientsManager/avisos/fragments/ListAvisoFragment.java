@@ -1,0 +1,202 @@
+package das.practica5.spolex.clientsManager.avisos.fragments;
+
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import das.practica5.spolex.clientsManager.R;
+
+import das.practica5.spolex.clientsManager.avisos.Aviso;
+import das.practica5.spolex.clientsManager.avisos.adapters.AvisoArrayAdapter;
+import das.practica5.spolex.clientsManager.avisos.adapters.AvisoBdAdapter;
+
+/**
+ * A fragment representing a list of Items.
+ * <p/>
+ * Large screen devices (such as tablets) are supported by replacing the ListView
+ * with a GridView.
+ * <p/>
+ * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
+ * interface.
+ */
+public class ListAvisoFragment extends Fragment implements AbsListView.OnItemClickListener ,AbsListView.OnItemLongClickListener{
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+    private static final String LOG_TAG = ListAvisoFragment.class.getSimpleName();
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    private AvisoBdAdapter mBdAdapter;
+    private ArrayList<Aviso> mListAvisos;
+
+    private OnFragmentInteractionListener mListener;
+
+    /**
+     * The fragment's ListView/GridView.
+     */
+    private AbsListView mListView;
+
+    /**
+     * The Adapter which will be used to populate the ListView/GridView with
+     * Views.
+     */
+    private AvisoArrayAdapter mAdapter;
+
+    // TODO: Rename and change types of parameters
+    public static ListAvisoFragment newInstance(String param1, String param2) {
+        ListAvisoFragment fragment = new ListAvisoFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    /**
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
+     */
+    public ListAvisoFragment() {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+        mBdAdapter = new AvisoBdAdapter(getActivity());
+        mListAvisos = mBdAdapter.getAvisos(null);
+
+        mAdapter = new AvisoArrayAdapter(getActivity(), mListAvisos);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_aviso, container, false);
+
+        // Set the adapter
+        mListView = (AbsListView) view.findViewById(android.R.id.list);
+        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+
+        // Set OnItemClickListener so we can be notified on item clicks
+        mListView.setOnItemClickListener(this);
+
+        mListView.setOnItemLongClickListener(this);
+
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+
+        return view;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (null != mListener) {
+            // Notify the active callbacks interface (the activity, if the
+            // fragment is attached to one) that an item has been selected.
+            mListener.onSelectedAvisoInteraction(mListAvisos.get(position).getmId());
+        }
+    }
+
+
+
+    /**
+     * The default content for this Fragment has a TextView that is shown when
+     * the list is empty. If you would like to change the text, call this method
+     * to supply the text it should use.
+     */
+    public void setEmptyText(CharSequence emptyText) {
+        View emptyView = mListView.getEmptyView();
+
+        if (emptyView instanceof TextView) {
+            ((TextView) emptyView).setText(emptyText);
+        }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        if (null != mListener) {
+            // Notify the active callbacks interface (the activity, if the
+            // fragment is attached to one) that an item has been selected.
+            mListener.onDeleteSelectedAviso(mListAvisos.get(position).getmId());
+        }
+        return true;
+    }
+
+    public void refresh() {
+
+        updateList();
+    }
+
+    private void updateList() {
+        mListAvisos = mBdAdapter.getAvisos(null);
+        mAdapter = new AvisoArrayAdapter(getActivity(),mListAvisos);
+        mListView.setAdapter(mAdapter);
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        public void onSelectedAvisoInteraction(long id);
+        public void onDeleteSelectedAviso(long id);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+       /* mListAvisos.clear();
+        mListAvisos.addAll(mBdAdapter.getAvisos(null));
+        mAdapter.notifyDataSetChanged();
+        mListView.setAdapter(mAdapter);
+
+        Log.d(LOG_TAG, getString(R.string.msg_avisos_actualizado));*/
+    }
+}

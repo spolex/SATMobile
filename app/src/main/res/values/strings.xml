@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">SAT Mobile</string>
+    <string name="action_settings">Configuración</string>
+    <string name="icon_desc">Icono para cada acción del navigation drawer</string>
+
+    <!--Lista de titulos del menú de navegación-->
+    <string-array name="nav_options">
+        <item>Home</item>
+        <item>Clientes</item>
+        <item>Añadir cliente</item>
+        <item>Avisos</item>
+        <item>Añadir aviso</item>
+    </string-array>
+
+    <!-- Lista de iconos de navegacion-->
+    <array name="navigation_iconos">
+        <item>@drawable/ic_action_home</item>
+        <item>@drawable/ic_action_user</item>
+        <item>@drawable/ic_action_new</item>
+        <item>@drawable/ic_action_edit</item>
+    </array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="telefono">Teléfono</string>
+
+    <string name="msg_fragment_nulo">Fragment nulo</string>
+    <string name="menu_abierto">Abierto</string>
+    <string name="menu_cerrado">Menu cerrado</string>
+    <string name="direccion">Dirección</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="titulo_home_clientes">SATMOBILE</string>
+    <string name="label_empresa">Empresa</string>
+    <string name="label_fecha_alta">Fecha de alta</string>
+    <string name="btn_aceptar">Aceptar</string>
+    <string name="label_btn_cancelar">Cancelar</string>
+    <string name="msg_from_camera_fail">Error al capturar el archivo de la camara</string>
+    <string name="msg_from_where">Completar la acción usando</string>
+    <string name="label_email">Email</string>
+    <string name="cliente_crear_confirmacion">Cliente creado con éxito</string>
+    <string name="cliente_editar_confirmacion">Cliente actualizado con éxito</string>
+    <string name="cliente_eliminar_titulo">Eliminar Cliente</string>
+    <string name="cliente_eliminar_mensaje">¿Está seguro que desea eliminar el cliente seleccionado?</string>
+    <string name="cliente_eliminar_confirmacion">Cliente eliminado con éxito del sistema</string>
+    <string name="msg_error_formato_telfno">Formato de teléfono incorrecto</string>
+    <string name="msg_campo_dir_no_vacio">El campo dirección no puede estar vacío</string>
+    <string name="error_nombre_vacion">El campo nombre no puede estar vacío</string>
+    <string name="msg_img_vacia">Debe seleccionar una imagen para la cuenta de cliente</string>
+    <string name="msg_email_registrado">El email ya se encuentra registrado en la base de datos</string>
+    <string name="msg_email_vacio">El campo email no puede estar vacío</string>
+    <string name="msg_img_no_valida">Seleccione otra imagen, la que ha escogido no es valida</string>
+    <string name="msg_nombre_vacio">No es posible registrar un cliente sin el nombre</string>
+    <string name="callback_listener_excep">" debe implementar OnFragmentInteractionListener"</string>
+    <string name="action_eliminar">Eliminar</string>
+    <string name="msg_cliente_borrado">Cliente borrado con éxito!!!</string>
+    <string name="msg_cliente_no_borrado">No ha sido posible eliminar el cliente del sistema</string>
+    <string name="action_actualizar">Actualizar</string>
+    <string name="msg_conf_cliente_nuevo">¿Desea guardar el cliente en el sistema?</string>
+    <string name="msg_conf_editar_cliente">¿Desea actualizar los datos del cliente?</string>
+    <string name="msg_no_posible_actualizar_cliente">No ha sido posible actualizar el cliente</string>
+    <string name="msg_exito_actualizar_cliente">Cliente actualizado con éxito</string>
+    <string name="msg_escoge_una">Escoge una imagen</string>
+    <string name="msg_img_no_encontrada">No se encuentra el archivo de imagen</string>
+    <string name="msg_error_escribir_img_sd">Error al guardar la imagen</string>
+    <string name="cliente">Cliente</string>
+    <string name="Fecha">Fecha</string>
+    <string name="time">Hora</string>
+    <string name="urgente">Urgente</string>
+    <string name="realizada">Realizada</string>
+    <string name="informe">Informe</string>
+    <string name="titulo_home_avisos">Gestión de avisos</string>
+    <string name="msg_conf_aviso_nuevo">¿Desea guardar el aviso nuevo?</string>
+    <string name="msg_conf_editar_aviso">¿Está seguro que desea editar el aviso?</string>
+    <string name="msg_no_posible_actualizar_aviso">No ha sido posible actualizar el aviso</string>
+    <string name="msg_exito_actualizar_aviso">Aviso actualizado con éxito</string>
+    <string name="msg_no_posible_guardar_aviso">No ha sido posible registrar el aviso en el sistema</string>
+    <string name="msg_exito_guardar_aviso">Aviso guardado en el sistema</string>
+    <string name="msg_campos_vacios">No puede dejar ningún campo vacío</string>
+    <string name="aviso_eliminar_titulo">Gestión de avisos</string>
+    <string name="aviso_eliminar_mensaje">¿Está seguro que desea eliminar el aviso seleccionado?</string>
+    <string name="msg_avisos_actualizado">Listview avisos actualizados</string>
+    <string name="avisos_pend_notificacion_titulo">Avisos urgentes pendientes</string>
+    <string name="msg_avisos_pend_not">Revise sus avisos pendientes urgentes</string>
+    <string name="ticker_not_avis_urg_pend">Avisos Urgentes Pendientes!!!!</string>
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
+    <string name="aviso_eliminar_confirmacion">Aviso eliminado con éxito del sistema</string>
+    <string name="title_activity_main">SP SAT Mobile</string>
+    <string name="title_activity_clients">Clientes</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="pref_title_urg">Frecuencia avisos urg</string>
+    <string name="pref_default_urg">30</string>
+    <string name="pref_title_acti_urgentes">Comprobar avisos urgentes</string>
+    <string name="pref_description_avisos_urg">Comprobar si existen avisos urgentes para el día actual sin realizar</string>
+    <string name="label_btn_map">Mapa</string>
+    <string name="aviso_eliminar_error">No ha sido posible eliminar el aviso del sistema</string>
+    <string name="msg_archivo_guardado">Informe guardado con éxito</string>
+    <string name="msg_archivo_error_guardado">Error al guardar el informe</string>
+    <string name="msg_error_recuperar_informe">No ha sido posible recuperar el informe</string>
+    <string name="msg_cliente_nuevo_guardado">Éxito al guardar el cliente nuevo en el sistema</string>
+    <string name="msg_error_guardar_cliente">No ha sido posible guardar el cliente nuevo en el sistema, revise los datos introducidos</string>
+    <!--En caso de ser dinámicos añadir desde el código-->
+
+</resources>

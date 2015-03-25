@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.16">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/addclients_client_img_id"
+                    android:src="@drawable/ic_action_user_add"
+                    android:theme="@style/AppTheme"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginTop="2dp"
+                    android:background="#ff7edde8" />
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/clientsadder_img_btn_id"
+                    android:src="@drawable/ic_action_photo"
+                    android:background="#4585f2"
+                    android:elevation="10dp"
+                    android:layout_marginRight="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/nombre"
+                        android:id="@+id/clientadder_label_nombre_id"
+                        android:textColor="#4585f2"
+                        android:layout_weight="0.60"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/clientsadder_nombre_id"
+                        android:layout_weight="0.30"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPersonName"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/apellidos"
+                        android:ems="10"
+                        android:id="@+id/clientsadder_label_apellidos_id"
+                        android:textColor="#4585f2"
+                        android:layout_weight="0.6"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/clientsadder_apellidos_id"
+                        android:layout_weight="0.30"/>
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/label_fecha_alta"
+                android:id="@+id/clientsadder_label_fechaalta_id"
+                android:textColor="#4585f2"
+                android:layout_weight="0.32" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/clientsadder_fechaalta_id"
+                android:layout_weight="0.30" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/label_email"
+                android:id="@+id/cliensadder_label_email_id"
+                android:layout_weight="0.35"
+                android:textColor="#4585f2" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/clientsadder_email_id"
+                android:layout_weight="0.20"
+                android:autoText="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.16">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/telefono"
+                android:id="@+id/clientsadder_label_tfno_id"
+                android:textColor="#4585f2"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/clientssadder_telefono_id"
+                android:layout_weight="0.3"
+                android:textAlignment="center"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.16">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/direccion"
+                android:id="@+id/clientsadder_label_dir_id"
+                android:textColor="#4585f2"
+                android:layout_weight="0.7" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPostalAddress"
+                android:ems="10"
+                android:id="@+id/clientsadder_dir_id"
+                android:layout_weight="0.3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.16">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/label_empresa"
+                android:id="@+id/clientsadder_label_empresa_id"
+                android:textColor="#4585f2"
+                android:layout_weight="0.7" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/clientsadder_empresa_id"
+                android:inputType="textAutoComplete"
+                android:layout_weight="0.3" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.16">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_btn_cancelar"
+                android:id="@+id/clientsadder_btn_cancelar_id"
+                android:textColor="#fff"
+                android:background="#4585f2"
+                android:layout_weight="0.5"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_aceptar"
+                android:id="@+id/clientsadder_btn_aceptar_id"
+                android:background="#4585f2"
+                android:textColor="#fff"
+                android:layout_weight="0.5"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
