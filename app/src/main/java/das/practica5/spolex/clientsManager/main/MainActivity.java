@@ -15,11 +15,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
 
 import das.practica5.spolex.clientsManager.R;
 import das.practica5.spolex.clientsManager.avisos.servicios.LookUpAvisosService;
 import das.practica5.spolex.clientsManager.clientes.ClientsActivity;
+import das.practica5.spolex.clientsManager.tecnicos.Tecnico;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -40,8 +45,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     SharedPreferences prefs;
 
 
-
-
+    private Tecnico mTecnico;
 
     @Override
     public boolean onKeyShortcut(int keyCode, KeyEvent event) {
@@ -52,6 +56,25 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Get user
+        Bundle extras = getIntent().getExtras();
+        if(extras==null)return;
+
+        if (extras.containsKey("tecnico"))
+        {
+            JSONArray tecnicos=null;
+            try {
+                tecnicos = new JSONArray(extras.getString("tecnico"));
+                JSONObject tecnico = tecnicos.getJSONObject(0);
+                mTecnico = new Tecnico(tecnico.getString("DNI"),tecnico.getString("nombre"),
+                        tecnico.getString("email"),Integer.valueOf(tecnico.getString("telefono")),
+                        tecnico.getString("activo").equals("1"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        setTitle(getTitle()+" "+mTecnico.getNombre());
         //New toolbar
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.main_toolbar);
         toolbar.setBackgroundColor(Color.parseColor("#4585f2"));

@@ -3,9 +3,9 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Contraseña (opcional)</string>
+    <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Identificarse</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_in_short">LOGIN</string>
 
     <string name="error_invalid_email">Esta dirección de email no es válida</string>
     <string name="error_invalid_password">La contraseña es demasiado corta</string>

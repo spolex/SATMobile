@@ -4,17 +4,23 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,24 +31,38 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import das.practica5.spolex.clientsManager.R;
+import das.practica5.spolex.clientsManager.avisos.fragments.ListAvisoFragment;
+import das.practica5.spolex.clientsManager.avisos.servicios.LookUpAvisosService;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<Cursor> {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -85,6 +105,12 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        //New toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar_login);
+        toolbar.setBackgroundColor(Color.parseColor("#4585f2"));
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
     }
 
     private void populateAutoComplete() {
@@ -249,7 +275,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, JSONArray> {
 
         private final String mEmail;
         private final String mPassword;
@@ -259,39 +285,56 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             mPassword = password;
         }
 
+        /**
+         *
+         * Haciendo uso del servicio web en el servidor realizamos una petición de login que nos
+         * enviará los datos del técnico en caso de éxito, null en otro caso.  Para el uso de esta
+         * app, en esta versión no se tendra en cuenta el registro en el dispositivo, se deberá
+         * solicitar al administrador de la app.
+         *
+         * @param params
+         * @return
+         */
         @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+        protected JSONArray doInBackground(Void... params) {
 
             try {
-                // Simulate network access.
+                // network access.
+                JSONArray tecnicos = login(mEmail,mPassword);
                 Thread.sleep(2000);
+                return tecnicos;
             } catch (InterruptedException e) {
-                return false;
+                return null;
             }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final JSONArray tecnico) {
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
-                finish();
+            if (tecnico!=null) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Bundle b = new Bundle();
+                b.putString("tecnico", tecnico.toString());
+                intent.putExtras(b);
+                startActivity(intent);
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                /*mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordView.requestFocus();*/
+                /**
+                 * Borramos el registro con confirmación
+                 */
+                AlertDialog.Builder dialogEliminar = new AlertDialog.Builder(LoginActivity.this);
+
+                dialogEliminar.setIcon(android.R.drawable.ic_dialog_alert);
+                dialogEliminar.setTitle(getResources().getString(R.string.titulo_login_incorrecto));
+                dialogEliminar.setMessage(getResources().getString(R.string.msg_login_incorrecto));
+                dialogEliminar.setCancelable(false);
+
+                dialogEliminar.setPositiveButton(getResources().getString(android.R.string.ok),null);
+                dialogEliminar.show();
+
             }
         }
 
@@ -299,6 +342,50 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+
+        protected JSONArray login(String email, String password){
+            //Parámetros para enviar al servidor
+            ArrayList<NameValuePair> parametros = new ArrayList<NameValuePair>();
+            parametros.add(new BasicNameValuePair("email",email));
+            parametros.add(new BasicNameValuePair("password", password));
+
+            //configurar los parámetros de la conexión http
+            HttpParams httpParameters = new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpParameters, 15000);
+            HttpConnectionParams.setSoTimeout(httpParameters, 15000);
+
+            //Se define un cliente con esos parámetros
+            HttpClient httpClient = new DefaultHttpClient(httpParameters);
+
+            //Crear el elemento HttpPost con la llamada que se quiere hacer
+            HttpPost httpPost= new HttpPost("http://85.85.29.210/~spolex/satmobile/servicios/tec_login.php");
+            try {
+                httpPost.setEntity(new UrlEncodedFormEntity(parametros));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            //Se ejecuta la llamada y se recoge la respuesta
+            HttpEntity entity=null;
+            try {
+                HttpResponse response = httpClient.execute(httpPost);
+                entity = response.getEntity();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //Se transforma la respuesta en un string y se transforma en un objeto JSON.
+            try {
+                String result = EntityUtils.toString(entity);
+                JSONArray jsonArray = new JSONArray(result);
+                return jsonArray;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 }

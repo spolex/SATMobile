@@ -103,6 +103,8 @@
     <string name="msg_error_recuperar_informe">No ha sido posible recuperar el informe</string>
     <string name="msg_cliente_nuevo_guardado">Éxito al guardar el cliente nuevo en el sistema</string>
     <string name="msg_error_guardar_cliente">No ha sido posible guardar el cliente nuevo en el sistema, revise los datos introducidos</string>
+    <string name="titulo_login_incorrecto">Identificación incorrecta</string>
+    <string name="msg_login_incorrecto">Usuario o contraseña incorrectos, pongase en contacto con su administrador SAT</string>
     <!--En caso de ser dinámicos añadir desde el código-->
 
 </resources>
