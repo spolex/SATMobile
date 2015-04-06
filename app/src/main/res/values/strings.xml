@@ -116,6 +116,10 @@
     <string name="msg_gcm_reg_id">Dispositivo registrado, ID del registro=</string>
     <string name="titulo_gcm_existe">GCM id existe</string>
     <string name="msg_gcm_existe">El id del registro ya se encuentra en el sistema</string>
+    <string name="recibido">Recibido:</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
     <!--En caso de ser dinámicos añadir desde el código-->
 
 </resources>

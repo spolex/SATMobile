@@ -47,14 +47,14 @@
             android:src="@drawable/manage"
             android:layout_gravity="center"
             android:layout_weight="0.5" />
-
+            <!--
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/display"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.5" />-->
         </LinearLayout>
     </ScrollView>
 

@@ -17,6 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import das.org.spolex.freesat.R;
+import das.org.spolex.freesat.avisos.Aviso;
+import das.org.spolex.freesat.main.LoginActivity;
 import das.org.spolex.freesat.main.MainActivity;
 import das.org.spolex.freesat.main.SATManagerActivity;
 
@@ -26,8 +28,8 @@ public class GcmIntentService extends IntentService {
     public static String LOG_TAG = GcmIntentService.class.getName();
     public static final int NOTIFICATION_ID=1;
     private NotificationManager mNotificationManager;
-    NotificationCompat.Builder builder;
-
+    private Aviso mAviso;
+    private Context context;
 
     public GcmIntentService() {
         super("GcmIntentService");
@@ -36,7 +38,8 @@ public class GcmIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.i(LOG_TAG,"Service start");
+        //TODO handle database updates from server
+        context = getApplicationContext();
             GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
             String messageType = gcm.getMessageType(intent);
 
@@ -53,8 +56,14 @@ public class GcmIntentService extends IntentService {
                 } else if (GoogleCloudMessaging.
                         MESSAGE_TYPE_MESSAGE.equals(messageType)) {
                     // the service doing some work......
-                    // Post notification of received message.
-                    sendNotification("Received: " + extras.toString());
+                    mAviso = new Aviso(context,extras.getString("id_cliente")
+                            ,extras.getString("fecha")+extras.getString("hora"),
+                            extras.getString("urgente").equals("1"),false,
+                            extras.getString("informe"),null, null, null);
+                    mAviso.setmId(mAviso.save());                    // Post notification of received message.
+
+                    sendNotification(getString(R.string.recibido) + extras.toString());
+
                     Log.i(LOG_TAG, "Received: " + extras.toString());
                 }
             }
@@ -69,14 +78,15 @@ public class GcmIntentService extends IntentService {
     private void sendNotification(String msg) {
         mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
+        //TODO conprobar si está logueado para redirigir a otra activity
 
+        Intent i = new Intent(this, LoginActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, SATManagerActivity.class), 0);
-
+               i, PendingIntent.FLAG_CANCEL_CURRENT);
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_action_clients)
-                        .setContentTitle("GCM Notification")
+                        .setContentTitle("Asignación de avisos")
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(msg))
                         .setContentText(msg)
