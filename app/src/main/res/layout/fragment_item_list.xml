@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="das.practica5.spolex.clientsManager.clientes.fragments.ListaClientesFragment"
+    tools:context="das.org.spolex.freesat.clientes.fragments.ListaClientesFragment"
     android:orientation="vertical">
 
     <ListView android:id="@android:id/list" android:layout_width="match_parent"

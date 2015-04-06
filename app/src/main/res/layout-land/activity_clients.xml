@@ -21,7 +21,7 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="das.practica5.spolex.clientsManager.clientes.fragments.ListaClientesFragment"
+            android:name="das.org.spolex.freesat.clientes.fragments.ListaClientesFragment"
             android:id="@+id/main_listaclientes_fragment_id"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.80" />

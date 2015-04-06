@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="das.practica5.spolex.clientsManager.main.LoginActivity">
+    tools:context="das.org.spolex.freesat.main.LoginActivity">
 
 
     <!--Toolbar-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolbar_login"
-        android:layout_width="364dp"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         style="@style/DrawerArrowStyle" />
 

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="das.practica5.spolex.clientsManager.clientes.fragments.ClientsFragmentForm"
+    tools:context="das.org.spolex.freesat.clientes.fragments.ClientsFragmentForm"
     android:id="@+id/clientsadder_back_id"
     android:background="@drawable/back_clientes"
 

@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="das.practica5.spolex.clientsManager.clientes.ClientsActivity"
+    tools:context="das.org.spolex.freesat.clientes.ClientsActivity"
     android:weightSum="1"
     android:orientation="vertical">
 
@@ -15,7 +15,7 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="das.practica5.spolex.clientsManager.clientes.fragments.ListaClientesFragment"
+        android:name="das.org.spolex.freesat.clientes.fragments.ListaClientesFragment"
         android:id="@+id/fragment"
         android:layout_gravity="center_vertical" />
 

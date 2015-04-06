@@ -105,6 +105,17 @@
     <string name="msg_error_guardar_cliente">No ha sido posible guardar el cliente nuevo en el sistema, revise los datos introducidos</string>
     <string name="titulo_login_incorrecto">Identificación incorrecta</string>
     <string name="msg_login_incorrecto">Usuario o contraseña incorrectos, pongase en contacto con su administrador SAT</string>
+    <string name="device_no_support">Dispositivo no soportado</string>
+    <string name="msg_error_servidor">Error del servicio web</string>
+    <string name="msg_exito_regid_gcm">Dispositivo registrado en el servidor con éxito</string>
+    <string name="titulo_gcm_incorrecto">GCM Error</string>
+    <string name="msg_gcm_incorrecto">No ha sido posible registrar el dispositivo en el servidor,apunte el siguiente id en lugar seguro y faciliteselo al responsable SAT de la empresa:\\n</string>
+    <string name="msg_gcm_not_found">Registro GCM no existe</string>
+    <string name="msg_version_app_cambiada">Versión app cambiada</string>
+    <string name="msg_no_valid_gps_apk">No se encuentra apk Google Play Service Valida</string>
+    <string name="msg_gcm_reg_id">Dispositivo registrado, ID del registro=</string>
+    <string name="titulo_gcm_existe">GCM id existe</string>
+    <string name="msg_gcm_existe">El id del registro ya se encuentra en el sistema</string>
     <!--En caso de ser dinámicos añadir desde el código-->
 
 </resources>
