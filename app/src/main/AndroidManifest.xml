@@ -100,7 +100,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/new_app_widget_info" />
+                android:resource="@xml/avisos_app_widget_info" />
         </receiver>
 
         <activity android:name=".widgets.AvisoAppWidgetConfigureActivity" >
@@ -108,6 +108,9 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+
+        <service android:name=".widgets.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
     </application>
 
 </manifest> <!-- @style/Theme.AppCompat.NoActionBar -->

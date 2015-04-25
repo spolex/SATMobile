@@ -1,11 +1,15 @@
 package das.org.spolex.freesat.widgets;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.RemoteViews;
 
 import das.org.spolex.freesat.R;
+import das.org.spolex.freesat.main.LoginActivity;
 
 /**
  * Implementation of App Widget functionality.
@@ -17,9 +21,13 @@ public class AvisosAppWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         final int N = appWidgetIds.length;
-        for (int i = 0; i < N; i++) {
-            updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
+        for (int i = 0; i<N; ++i) {
+            RemoteViews remoteViews = updateWidgetListView(context,
+                    appWidgetIds[i]);
+            appWidgetManager.updateAppWidget(appWidgetIds[i],
+                    remoteViews);
         }
+       super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override
@@ -41,16 +49,26 @@ public class AvisosAppWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    static RemoteViews updateWidgetListView(Context context,int appWidgetId) {
 
-        CharSequence widgetText = AvisoAppWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
-        // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        //which layout to show on widget
+        RemoteViews remoteViews = new RemoteViews(
+                context.getPackageName(),R.layout.avisos_app_widget);
 
-        // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget(appWidgetId, views);
+        //RemoteViews Service needed to provide adapter for ListView
+        Intent svcIntent = new Intent(context, WidgetService.class);
+        //passing app widget id to that RemoteViews Service
+        svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        //setting a unique Uri to the intent
+        //don't know its purpose to me right now
+        svcIntent.setData(Uri.parse(
+                svcIntent.toUri(Intent.URI_INTENT_SCHEME)));
+        //setting adapter to listview of the widget
+        remoteViews.setRemoteAdapter(appWidgetId, R.id.listViewWidget,
+                svcIntent);
+        //setting an empty view in case of no data
+        remoteViews.setEmptyView(R.id.listViewWidget, R.id.empty_view);
+        return remoteViews;
     }
 }
 

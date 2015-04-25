@@ -33,7 +33,7 @@ public class AvisoAppWidgetConfigureActivity extends Activity {
         // out of the widget placement if the user presses the back button.
         setResult(RESULT_CANCELED);
 
-        setContentView(R.layout.new_app_widget_configure);
+        setContentView(R.layout.avisos_app_widget_configure);
         mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
         findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
 
@@ -64,7 +64,7 @@ public class AvisoAppWidgetConfigureActivity extends Activity {
 
             // It is the responsibility of the configuration activity to update the app widget
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            AvisosAppWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
+            AvisosAppWidget.updateWidgetListView(context,mAppWidgetId);
 
             // Make sure we pass back the original appWidgetId
             Intent resultValue = new Intent();
