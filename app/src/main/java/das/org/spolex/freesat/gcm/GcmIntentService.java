@@ -7,14 +7,20 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import das.org.spolex.freesat.R;
 import das.org.spolex.freesat.avisos.Aviso;
@@ -59,7 +65,7 @@ public class GcmIntentService extends IntentService {
                     mAviso = new Aviso(context,extras.getString("id_cliente")
                             ,extras.getString("fecha")+extras.getString("hora"),
                             extras.getString("urgente").equals("1"),false,
-                            extras.getString("informe"),null, null, null);
+                            extras.getString("observaciones"),null, null, null);
                     mAviso.setmId(mAviso.save());                    // Post notification of received message.
 
                     sendNotification(getString(R.string.recibido) + extras.toString());
@@ -95,5 +101,4 @@ public class GcmIntentService extends IntentService {
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
     }
-
 }

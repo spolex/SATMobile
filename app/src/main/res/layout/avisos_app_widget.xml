@@ -23,7 +23,7 @@
         android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:text="@string/FreeSAT"
-        android:id="@+id/button"
+        android:id="@+id/avisos_app_widget_btn"
         android:layout_gravity="bottom|center" />
 
 

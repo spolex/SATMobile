@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import das.org.spolex.freesat.R;
 import das.org.spolex.freesat.avisos.Aviso;
@@ -35,7 +38,11 @@ public class ListProvider implements RemoteViewsService.RemoteViewsFactory {
 
     private void cargarLista() {
         //TODO los avisos para hoy
-        listAvisos=bdAdapter.getAvisos(null);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        java.util.Date date = new java.util.Date();
+        String stringdate = sdf.format(date);
+
+        listAvisos=bdAdapter.getAvisos("fecha_hora <="+"'"+stringdate+"'");
     }
     @Override
     public int getCount() {
@@ -49,7 +56,8 @@ public class ListProvider implements RemoteViewsService.RemoteViewsFactory {
                 R.layout.item_aviso_wid);
         Aviso aviso = listAvisos.get(position);
         remoteview.setTextViewText(R.id.item_avisos_wid_destino_id, aviso.getmDestino());
-        remoteview.setTextViewText(R.id.item_avisos_wid_fecha_hora_id,aviso.getmFechaHora());
+        remoteview.setTextViewText(R.id.item_avisos_wid_fecha_hora_id, aviso.getmFechaHora());
+        remoteview.setTextViewText(R.id.item_avisos_widget_informe, aviso.getmInforme());
         return remoteview;
     }
 

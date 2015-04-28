@@ -68,6 +68,11 @@ public class AvisosAppWidget extends AppWidgetProvider {
                 svcIntent);
         //setting an empty view in case of no data
         remoteViews.setEmptyView(R.id.listViewWidget, R.id.empty_view);
+
+        //ÇCreate intench to launch LoginScreen
+        Intent i = new Intent(context,LoginActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(context,0,i,0);
+        remoteViews.setOnClickPendingIntent(R.id.avisos_app_widget_btn,pi);
         return remoteViews;
     }
 }
